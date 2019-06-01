@@ -14,10 +14,10 @@ const CreateRoom = props => {
     }
   }
   return (
-    <div>
-      <form onSubmit={e => handleSubmit(e)}>
+    <div className='create-room'>
+      <form onSubmit={e => handleSubmit(e)} >
         <input
-          onChange={e => setInput(e.target.value)} 
+          onChange={e => setInput(e.target.value)}
           placeholder="Create a room" 
           type="text" 
           value={input}/>

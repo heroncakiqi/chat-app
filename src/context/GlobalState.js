@@ -1,21 +1,29 @@
 import React, { useState, useEffect, useReducer } from 'react';
 
-import db from '../firebase';
-import { roomsReducer, selectRoomReducer, ADD_ROOMS, SELECT_ROOM } from './reducers';
+import firestore from '../firebase';
+import { 
+  roomsReducer, 
+  selectRoomReducer, 
+  messagesReducer, 
+  ADD_ROOMS, SELECT_ROOM, SET_MESSAGES, CLEAR_MESSAGES
+} from './reducers';
 
 export const Context = React.createContext();
 
 const GlobalState = ({ children }) => {
   // set global state
   const [user, setUser] = useState(localStorage.getItem('user') || null);
-  //
+
   const [roomsState, setRooms] = useReducer(roomsReducer, []);
 
   const [openRoom, setOpenRoom] = useReducer(selectRoomReducer, {});
 
+  const [messages, setMessages] = useReducer(messagesReducer, []);
+
+
   // define actions
   const addRooms = (rooms) => {
-    db.collection('rooms').onSnapshot((snapshot) => {
+    firestore.collection('rooms').onSnapshot((snapshot) => {
       const changes = snapshot.docChanges();
       const snapArray = changes.map(item => ({id:item.doc.id, name: item.doc.data().name}));
       setRooms({type: ADD_ROOMS, rooms: snapArray})
@@ -23,16 +31,34 @@ const GlobalState = ({ children }) => {
   }
 
   const selectRoom = id => {
-    db.collection('rooms').doc(id).collection('messages').onSnapshot((snapshot) => {
-      const changes = snapshot.docChanges();
-      const data = changes[0] ? changes[0].doc.data() : {};
-      setOpenRoom({type: SELECT_ROOM, payload: data});
-    })
+    const room = roomsState.find(item => item.id == id);
+    setOpenRoom({type: SELECT_ROOM, payload: room});
+      const unsubscribe = firestore.collection('rooms').doc(id).collection('messages')
+        .orderBy('date').onSnapshot(snapshot => {
+        const changes = snapshot.docChanges();
+        const messagesArray = changes.map(item => {
+          return item.doc.data();
+        });
+        setMessages({type: SET_MESSAGES, payload: messagesArray});
+      });
+  }
+
+  
+  const clearMessages = () => {
+    setMessages({type: CLEAR_MESSAGES});
   }
 
   const addSingleRoom = (name) => {
-    db.collection('rooms').add({
+    firestore.collection('rooms').add({
       name
+    })
+  }
+
+  const sendMessage = input => {
+    firestore.collection('rooms').doc(openRoom.id).collection('messages').add({
+      author: user,
+      text: input,
+      date: Date.now()
     })
   }
 
@@ -44,7 +70,10 @@ const GlobalState = ({ children }) => {
         openRoom,
         addRooms,
         addSingleRoom,
-        selectRoom
+        selectRoom,
+        messages,
+        sendMessage,
+        clearMessages
       }}
     >
       {children}

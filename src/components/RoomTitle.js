@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
 
+import { Context } from '../context/GlobalState';
 
 const RoomTitle = props => {
 
   return (
-    <div>
-      general
-    </div>
+    <Context.Consumer>
+        {context => 
+          <div className='room-title'>
+            {context.openRoom.name || 'Chat App'}
+          </div>
+        }
+    </Context.Consumer>
   )
 }
 

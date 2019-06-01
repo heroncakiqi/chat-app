@@ -1,3 +1,4 @@
+
 .enter-screen {
   display: flex;
   align-items: center;
@@ -26,11 +27,100 @@
 
 .container {
   display: grid;
-  grid-template-columns: 22% auto;
-  grid-template-rows: auto;
+  grid-template-columns: 20% auto;
+  grid-template-rows: 15% 75% 10%;
+  height: 100vh;
+  color: #9E9E9E;
 }
 
 .rooms-column {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  border: #EEEAEA solid .5px;
+}
+
+.room-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #EEEAEA solid .5px;
+  color: #686868;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+}
+
+.username {
+  display: flex;
+  align-items: center;
+  border: #EEEAEA solid .5px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.single-room {
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 20px;
+  border-bottom:#EEEAEA solid .5px;
+  cursor: pointer;
+}
+
+.single-room:hover {
+  background: #F9F9F9;
+  color: #707070;
+}
+.chat-window {
+  border: #EEEAEA solid .5px;
+  overflow: auto;
+}
+
+.create-room {
+  border: #EEEAEA solid .5px;
+  display: flex;
+}
+
+.text-box {
+  border: #EEEAEA solid .5px;
+  display: flex;
+}
+
+.message-text{
+  color: black;
+  font-size: 1.1rem;
+}
+
+.author {
+  font-size: .9rem;
+}
+
+.message {
+  padding: 15px;
+  border-bottom: solid #EEEAEA .5px;
+  margin-left: 5px;
+}
+
+.text-box input {
+  flex: 10;
+  border: none;
+  font-size: 1.1rem;
+  padding-left: 15px;
+}
+
+.text-box button {
+  flex: 1;
+}
+
+.create-room form {
+  display: flex;
+  flex: 1;
+}
+
+.create-room form input {
+  flex: 1;
+  border: none;
+  font-size: 1.1rem;
+  padding-left: 10px;
 }

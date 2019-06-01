@@ -4,11 +4,13 @@ import { Context } from '../context/GlobalState';
 
 const Username = props => {
   return (
-    <div>
       <Context.Consumer>
-        {context => context.user}
+        {context => 
+          <div className="username">
+            {context.user}
+          </div>
+        }
       </Context.Consumer>
-    </div>
   )
 }
 

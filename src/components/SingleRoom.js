@@ -4,15 +4,16 @@ import { Context } from '../context/GlobalState';
 
 const SingleRoom = (props) => {
 
-  const { selectRoom } = useContext(Context);
+  const { selectRoom,clearMessages } = useContext(Context);
 
   const handleClick = () => {
-    selectRoom(props.id)
+    clearMessages();
+    selectRoom(props.id);
   }
 
 return (
-  <div onClick={() => handleClick()}>
-    {props.children}
+  <div onClick={() => handleClick()} className='single-room'>
+    {`#${props.children}`}
   </div>
 )
 }
