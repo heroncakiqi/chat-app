@@ -4,11 +4,13 @@ import { Context } from '../context/GlobalState';
 
 const SingleRoom = (props) => {
 
-  const { selectRoom,clearMessages } = useContext(Context);
+  const { selectRoom,clearMessages, openRoom } = useContext(Context);
 
   const handleClick = () => {
-    clearMessages();
-    selectRoom(props.id);
+    if(openRoom.id !== props.id){
+      clearMessages();
+      selectRoom(props.id);
+    }
   }
 
 return (

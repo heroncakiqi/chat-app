@@ -14,20 +14,18 @@ const SendMessage = props => {
       setInput('');
     }
   }
-
-  return (
+  return openRoom.hasOwnProperty('id') ? (
       <form onSubmit={e => handleSubmit(e)} className='text-box'>
-        <input 
-          disabled={!openRoom.hasOwnProperty('id')} 
+        <input  
           type="text"
           placeholder="Send message"
           value={input}
           onChange={e => setInput(e.target.value)}
         /> 
-        <button>send</button>
+        <button id="send-button"></button>
       </form>
   )
-
+: <div className='text-box'></div>
 }
 
 export default SendMessage

@@ -33,16 +33,13 @@ const GlobalState = ({ children }) => {
   const selectRoom = id => {
     const room = roomsState.find(item => item.id == id);
     setOpenRoom({type: SELECT_ROOM, payload: room});
-      const unsubscribe = firestore.collection('rooms').doc(id).collection('messages')
-        .orderBy('date').onSnapshot(snapshot => {
-        const changes = snapshot.docChanges();
-        const messagesArray = changes.map(item => {
-          return item.doc.data();
-        });
-        setMessages({type: SET_MESSAGES, payload: messagesArray});
-      });
   }
 
+
+  const setMessagesReducer = (messageArray, cb) => {
+    setMessages({type: SET_MESSAGES, payload: messageArray});
+    cb();
+  }
   
   const clearMessages = () => {
     setMessages({type: CLEAR_MESSAGES});
@@ -73,7 +70,8 @@ const GlobalState = ({ children }) => {
         selectRoom,
         messages,
         sendMessage,
-        clearMessages
+        clearMessages,
+        setMessagesReducer
       }}
     >
       {children}

@@ -1,0 +1,16 @@
+import React, {useContext} from 'react';
+
+import { Context } from '../context/GlobalState';
+import ChatWindow from './ChatWindow';
+
+const Screen = props => {
+  const {openRoom} = useContext(Context);
+  return (
+    <div id='window' style={{ overflow: 'auto'}}>
+      {openRoom.id ? <ChatWindow/> : <h1>← Select a Channel</h1>}
+    </div>
+  )
+} 
+
+
+export default Screen;

@@ -7,6 +7,7 @@ import Rooms from './Rooms';
 import ChatWindow from './ChatWindow'
 import CreateRoom from './CreateRoom';
 import SendMessage from './SendMesaage';
+import Screen from './Screen';
 
 const App = props => {
   return (
@@ -14,7 +15,7 @@ const App = props => {
         <Username/>
         <RoomTitle/>
         <Rooms/>
-        <ChatWindow/>
+        <Screen/>
         <CreateRoom/>
         <SendMessage/>
     </div>
