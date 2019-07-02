@@ -3,6 +3,7 @@ export const ADD_SINGLE_ROOM = 'add_single_room';
 export const SELECT_ROOM = 'select_room';
 export const SET_MESSAGES = 'set_messages';
 export const CLEAR_MESSAGES = 'clear_messages';
+export const SET_USER = 'set_user';
 
 export const roomsReducer = (state, action) => {
   switch(action.type) {
@@ -32,5 +33,16 @@ export const messagesReducer = (state, action) => {
       return [];
     default:
       return state
+  }
+}
+
+export const userReducer = (state, action) => {
+  switch(action.type) {
+    case SET_USER:
+    localStorage.setItem('user', action.payload);
+    const user = localStorage.getItem('user');
+      return user;
+    default:
+    return state
   }
 }

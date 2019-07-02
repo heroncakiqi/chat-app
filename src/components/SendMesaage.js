@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { IoMdSend } from 'react-icons/io';
 
 import { Context } from '../context/GlobalState';
 
@@ -22,7 +23,7 @@ const SendMessage = props => {
           value={input}
           onChange={e => setInput(e.target.value)}
         /> 
-        <button id="send-button"></button>
+        <button id="send-button"> <IoMdSend size='2em' style={{color: 'blue'}}/> </button>
       </form>
   )
 : <div className='text-box'></div>

@@ -5,14 +5,15 @@ import {
   roomsReducer, 
   selectRoomReducer, 
   messagesReducer, 
-  ADD_ROOMS, SELECT_ROOM, SET_MESSAGES, CLEAR_MESSAGES
+  userReducer,
+  ADD_ROOMS, SELECT_ROOM, SET_MESSAGES, CLEAR_MESSAGES, SET_USER
 } from './reducers';
 
 export const Context = React.createContext();
 
 const GlobalState = ({ children }) => {
   // set global state
-  const [user, setUser] = useState(localStorage.getItem('user') || null);
+  const [user, setUser] = useReducer(userReducer, localStorage.getItem('user'));
 
   const [roomsState, setRooms] = useReducer(roomsReducer, []);
 
@@ -20,6 +21,9 @@ const GlobalState = ({ children }) => {
 
   const [messages, setMessages] = useReducer(messagesReducer, []);
 
+  const setSetUser = user => {
+    setUser({type: SET_USER, payload: user})
+  }
 
   // define actions
   const addRooms = (rooms) => {
@@ -71,7 +75,8 @@ const GlobalState = ({ children }) => {
         messages,
         sendMessage,
         clearMessages,
-        setMessagesReducer
+        setMessagesReducer,
+        setSetUser
       }}
     >
       {children}

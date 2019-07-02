@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { Context } from '../context/GlobalState';
+
+import App from './App';
 
 const Welcome = props => {
 
   const [input, setInput] = useState('');
 
+  const {setSetUser} = useContext(Context);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if(input.length > 2){
-      localStorage.setItem('user', input);
+      setSetUser(input);
     }
   }
 

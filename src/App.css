@@ -54,6 +54,7 @@
 .username {
   display: flex;
   align-items: center;
+  justify-content: center;
   border: #EEEAEA solid .5px;
   font-size: 1.2rem;
   font-weight: 700;
@@ -132,8 +133,8 @@ input:focus {
 #send-button {
   background: none;
   outline-width: 0;
+  border:none
 }
 
-polygon {
-  color: blue;
+.select-channel {
 }

@@ -10,12 +10,11 @@ import GlobalState, { Context } from './context/GlobalState';
 const Index = props => {
 
   const { user } = useContext(Context);
-  
   return (
     <div className="App">
         {user ? 
           <App /> : 
-          <Welcome/>
+          <Welcome />
         }
     </div>
   )

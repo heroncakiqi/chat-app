@@ -7,7 +7,7 @@ const Screen = props => {
   const {openRoom} = useContext(Context);
   return (
     <div id='window' style={{ overflow: 'auto'}}>
-      {openRoom.id ? <ChatWindow/> : <h1>← Select a Channel</h1>}
+      {openRoom.id ? <ChatWindow/> : <h1 className="select-channel">← Select a Channel</h1>}
     </div>
   )
 } 
