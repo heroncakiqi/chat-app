@@ -9,9 +9,10 @@ const ChatWindow = props => {
   
   useEffect(() => {
     const unsubscribe = firestore.collection('rooms').doc(openRoom.id).collection('messages')
-    .orderBy('date').onSnapshot(snapshot => {
+    .orderBy('date').onSnapshot(async snapshot => {
       const changes = snapshot.docChanges();
       const messagesArray = changes.map(item => item.doc.data());
+      console.log(messagesArray)
       setMessagesReducer(messagesArray, () => {
         const element = document.getElementById("window");
         element.scrollTop = element.scrollHeight
@@ -24,7 +25,7 @@ const ChatWindow = props => {
 
   return (
     <div className="chat-window">
-      {messages.map(item => <Message item={item} />)}
+      {messages.map((item, index) => <Message key={index} item={item} />)}
     </div>
   )
 }

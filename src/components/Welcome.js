@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Context } from '../context/GlobalState';
 
-import App from './App';
-
 const Welcome = props => {
 
   const [input, setInput] = useState('');

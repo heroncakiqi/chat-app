@@ -1,4 +1,5 @@
 
+
 .enter-screen {
   display: flex;
   align-items: center;
@@ -73,9 +74,16 @@
   background: #F9F9F9;
   color: #707070;
 }
+
+#window {
+  overflow-y: scroll;
+}
+
 .chat-window {
   border: #EEEAEA solid .5px;
-  overflow: auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .create-room {
@@ -91,6 +99,7 @@
 .message-text{
   color: black;
   font-size: 1.1rem;
+  word-break: break-word;
 }
 
 .author {
@@ -101,6 +110,7 @@
   padding: 15px;
   border-bottom: solid #EEEAEA .5px;
   margin-left: 5px;
+  display: flex;
 }
 
 .text-box input {
@@ -108,6 +118,7 @@
   border: none;
   font-size: 1.1rem;
   padding-left: 15px;
+  background: transparent
 }
 
 .text-box button {
@@ -124,6 +135,7 @@
   border: none;
   font-size: 1.1rem;
   padding-left: 10px;
+  background: transparent
 }
 
 input:focus {
@@ -136,5 +148,16 @@ input:focus {
   border:none
 }
 
+.profile-picture {
+  margin: 5px;
+}
+
 .select-channel {
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  display:inline-block; 
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%); 
 }

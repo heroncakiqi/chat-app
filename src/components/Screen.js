@@ -6,7 +6,7 @@ import ChatWindow from './ChatWindow';
 const Screen = props => {
   const {openRoom} = useContext(Context);
   return (
-    <div id='window' style={{ overflow: 'auto'}}>
+    <div id='window'>
       {openRoom.id ? <ChatWindow/> : <h1 className="select-channel">← Select a Channel</h1>}
     </div>
   )

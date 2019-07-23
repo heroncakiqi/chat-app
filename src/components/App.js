@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 
-import { Context } from '../context/GlobalState';
 import Username from './Username';
 import RoomTitle from './RoomTitle';
 import Rooms from './Rooms';
-import ChatWindow from './ChatWindow'
 import CreateRoom from './CreateRoom';
 import SendMessage from './SendMesaage';
 import Screen from './Screen';

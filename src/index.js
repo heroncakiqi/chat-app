@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './App.css';
@@ -8,8 +8,12 @@ import Welcome from './components/Welcome';
 import GlobalState, { Context } from './context/GlobalState';
 
 const Index = props => {
+  const { user, getInitialUser } = useContext(Context);
 
-  const { user } = useContext(Context);
+  useEffect(() => {
+    getInitialUser();
+  },[])
+
   return (
     <div className="App">
         {user ? 
