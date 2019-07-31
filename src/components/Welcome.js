@@ -5,12 +5,12 @@ const Welcome = props => {
 
   const [input, setInput] = useState('');
 
-  const {setSetUser} = useContext(Context);
+  const {createUser} = useContext(Context);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if(input.length > 2){
-      setSetUser(input);
+      createUser(input);
     }
   }
 

@@ -5,10 +5,11 @@ import './App.css';
 
 import App from './components/App';
 import Welcome from './components/Welcome';
+import Loading from './components/Loading';
 import GlobalState, { Context } from './context/GlobalState';
 
 const Index = props => {
-  const { user, getInitialUser } = useContext(Context);
+  const { loading, user, getInitialUser } = useContext(Context);
 
   useEffect(() => {
     getInitialUser();
@@ -16,10 +17,7 @@ const Index = props => {
 
   return (
     <div className="App">
-        {user ? 
-          <App /> : 
-          <Welcome />
-        }
+    {loading ? <Loading/> : user ? <App/> : <Welcome/>}
     </div>
   )
 }
